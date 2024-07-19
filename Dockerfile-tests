@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt update &&  \
+    apt install -y --no-install-recommends pciutils mesa-utils lshw &&  \
+    apt clean all
+
+WORKDIR /app
+COPY entrypoint.sh /app/
+
+CMD ["/app/entrypoint.sh"]
